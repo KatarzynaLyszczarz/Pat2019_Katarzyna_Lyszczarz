@@ -13,5 +13,4 @@
         android:src="@mipmap/logo"
         android:contentDescription="@string/todo" />
 
-
 </android.support.constraint.ConstraintLayout>
