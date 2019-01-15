@@ -1,37 +1,20 @@
 package com.example.katarzyna.katarzynalyszczarz
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
-
-    private val PASSWORD_PATTERN =
-        Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" +"(?=.*[A-Z])" + ".{8,}" +"$")
 
     private var passwordText: EditText? = null
     private var emailText: EditText? = null
     private var submitButton: Button? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        passwordText = findViewById(R.id.et_password)
-        emailText = findViewById(R.id.et_email)
-        submitButton = findViewById(R.id.btn_submit)
-        submitButton!!.setOnClickListener {
-            login()
-        }
-    }
-    private fun login() {
-        if (validate()) {
-            Toast.makeText(baseContext, "ok", Toast.LENGTH_LONG).show()
-        }
-    }
+    private val PASSWORD_PATTERN =
+        Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" +"(?=.*[A-Z])" + ".{8,}" +"$")
 
     private fun validate(): Boolean{
         val email = emailText!!.text.toString()
@@ -48,5 +31,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
+    }
+
+    private fun loginSuccess(){
+        val intent = Intent(baseContext, LoggedActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun login() {
+        if (validate()) {
+            loginSuccess()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        passwordText = findViewById(R.id.et_password)
+        emailText = findViewById(R.id.et_email)
+        submitButton = findViewById(R.id.btn_submit)
+        submitButton!!.setOnClickListener {
+            login()
+        }
     }
 }
