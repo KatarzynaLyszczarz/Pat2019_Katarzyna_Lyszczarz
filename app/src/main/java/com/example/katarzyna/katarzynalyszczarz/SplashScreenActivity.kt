@@ -8,7 +8,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private val transitionHandler = Handler()
 
-    val r = Runnable {
+    private val r = Runnable {
         try {
             val intent = Intent(baseContext, MainActivity::class.java)
             finish()
@@ -21,8 +21,15 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splashscreen)
-        transitionHandler.postDelayed(r, 5000)
+        if(preference.getLogStatus(baseContext)){
+            val intent = Intent(baseContext, LoggedActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        else {
+            setContentView(R.layout.activity_splashscreen)
+            transitionHandler.postDelayed(r, 5000)
+        }
     }
 
     override fun onBackPressed() {

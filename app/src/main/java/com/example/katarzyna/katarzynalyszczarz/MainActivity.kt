@@ -3,6 +3,7 @@ package com.example.katarzyna.katarzynalyszczarz
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import java.util.regex.Pattern
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val email = emailText!!.text.toString()
         val password = passwordText!!.text.toString()
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             emailText!!.error = "enter a valid email address"
             return false
         }
@@ -35,12 +36,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun loginSuccess(){
         val intent = Intent(baseContext, LoggedActivity::class.java)
+        finish()
         startActivity(intent)
     }
 
     private fun login() {
         if (validate()) {
             loginSuccess()
+            preference.setLogStatus(baseContext,true)
         }
     }
 
