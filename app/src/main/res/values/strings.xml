@@ -8,4 +8,5 @@
     <string name="logged">logged</string>
     <string name="logout">logout</string>
     <string name="Logged">Logged</string>
+    <string name="emailError">"enter a valid email address"</string>
 </resources>

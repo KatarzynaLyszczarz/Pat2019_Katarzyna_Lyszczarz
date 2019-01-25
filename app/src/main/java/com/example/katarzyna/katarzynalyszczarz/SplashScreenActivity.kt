@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 
+val preference = SaveSharedPreference()
+
 class SplashScreenActivity : AppCompatActivity() {
 
     private val transitionHandler = Handler()

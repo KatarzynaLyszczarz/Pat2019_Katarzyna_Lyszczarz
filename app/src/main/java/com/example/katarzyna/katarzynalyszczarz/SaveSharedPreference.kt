@@ -1,19 +1,16 @@
 package com.example.katarzyna.katarzynalyszczarz
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 
-val preference = SaveSharedPreference()
+class SaveSharedPreference {
 
-class SaveSharedPreference : AppCompatActivity (){
-
-    private val prefLog = "log_status"
+    private val prefLog = "logStatus"
     private val defaultStatus = false
 
-    fun setLogStatus(context: Context, log_status: Boolean) {
+    fun setLogStatus(context: Context, logStatus: Boolean) {
         val sharedPref = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        editor.putBoolean(prefLog, log_status)
+        editor.putBoolean(prefLog, logStatus)
         editor.apply()
     }
 
